@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios';
 import { useEffect,useReducer,createContext } from 'react';
-import  reducer  from '../reducers/productreducer'; 
+import  reducer  from '../reducers/productReducer'; 
 
 const AppContext = createContext({});
 

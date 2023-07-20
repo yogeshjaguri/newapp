@@ -1,7 +1,9 @@
 import { AppProvider } from '@/contexts/productcontext'
+import { FilterContextProvider} from '@/contexts/filtercontext'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import {CartProvider} from '@/contexts/cartContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppProvider>
-        {children}
+          <FilterContextProvider>
+            <CartProvider>
+            {children}
+            </CartProvider>
+          </FilterContextProvider>
         </AppProvider>
         </body>
     </html>

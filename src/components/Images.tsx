@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Images = ({images}) => {
-    const [mainImage, setMainImage] = React.useState(images[4]);
+    const [mainImage, setMainImage] = React.useState(images[0]);
   return (<>
   <div className='flex'>
     <figure className='grid grid-rows-5'>

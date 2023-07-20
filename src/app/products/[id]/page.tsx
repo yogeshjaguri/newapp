@@ -1,9 +1,9 @@
 'use client'
 import Images from '@/components/Images';
 import Star from '@/components/Star';
+import AddToCart from '@/components/addToCart';
 import useProduct from '@/hooks/useProduct';
-import React, { useEffect } from 'react'
-import addToCart from '@/components/addToCart';
+import React, { useEffect } from 'react';
 
 type Params = {
   params: {
@@ -18,12 +18,17 @@ const page = ({params: {id}}: Params ) => {
     getProduct(`https://dummyjson.com/products/${id}`)
   }, [])
 
-  const {title, images, rating, price} = product;
+  const {title, images, rating, price,stock} = product;
   console.log(id)
   return (
     <>
     {productLoading ? <p className='text-red-600'>Loading...</p>: 
     <div className='border border-orange-400 h-60 p-2   rounded-lg' >
+      {stock>0 ? <p className='text-green-600 border border-green-600 inline-block p-1 rounded-lg'>
+        In Stock
+      </p> : <p className='text-red-600 border-red-600 inline-block p-1 rounded-lg'>
+        Out of Stock
+        </p>}
         <Images images={images}/>
         <div className='flex justify-between items-center pt-2'>
         <h1 className='font-bold'>{title} </h1>
@@ -34,7 +39,7 @@ const page = ({params: {id}}: Params ) => {
         </div>
         <div className='flex justify-between items-center '>
         <p className='text-sm'>	&#8377; {price}</p>
-        <addToCart product={product}/>
+        {stock > 0 && <AddToCart product={product} />}
         </div>
     </div> 
     }
