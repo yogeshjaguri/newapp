@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 const AddToCart = ({product}:any) => {
-    const {AddToCart} = useCart();
+    const {addToCart} = useCart();
     const [amount, setAmount] = useState(1);
     const {id, stock} = product;
     console.log(id)
@@ -27,7 +27,7 @@ const AddToCart = ({product}:any) => {
         <button className='border bg-yellow-400 rounded-lg p-2 font-bold' onClick={()=>setIncrement()}>+</button>
         </div>
         <Link href={`/cart`}
-        onClick={()=>AddToCart(id,amount,product)}>
+        onClick={()=>addToCart(id,amount,product)}>
         <button className='border bg-yellow-400 rounded-lg  font-bold' >Add to Cart</button>
         </Link>
     </div>

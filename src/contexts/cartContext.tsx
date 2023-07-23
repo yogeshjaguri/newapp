@@ -13,7 +13,7 @@ const initialState = {
 }
 
 
-export const CartProvider = ({children}) => {
+ const CartProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     
     const addToCart = (id,amount,product) => {
@@ -23,7 +23,7 @@ export const CartProvider = ({children}) => {
     <CartContext.Provider value={{...state, addToCart}}>
         {children}
     </CartContext.Provider>
-  )
+  );
 }
 
-export default CartContext;
+export {CartContext, CartProvider};

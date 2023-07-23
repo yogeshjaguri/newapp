@@ -3,6 +3,7 @@ import Images from '@/components/Images';
 import Star from '@/components/Star';
 import AddToCart from '@/components/addToCart';
 import useProduct from '@/hooks/useProduct';
+import Link from 'next/link';
 import React, { useEffect } from 'react';
 
 type Params = {
@@ -22,6 +23,11 @@ const page = ({params: {id}}: Params ) => {
   console.log(id)
   return (
     <>
+    <div className='text-blue-600'>
+      <Link href='/'>
+        Back
+      </Link>
+    </div>
     {productLoading ? <p className='text-red-600'>Loading...</p>: 
     <div className='border border-orange-400 h-60 p-2   rounded-lg' >
       {stock>0 ? <p className='text-green-600 border border-green-600 inline-block p-1 rounded-lg'>
