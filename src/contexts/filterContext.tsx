@@ -14,7 +14,7 @@ const initialState = {
     },
 };
 
-export const FilterContextProvider = ({ children }: any) => {
+ const FilterContextProvider = ({ children }: any) => {
     const { products } = useProduct();
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -50,4 +50,4 @@ export const FilterContextProvider = ({ children }: any) => {
 };
 
 
-export default filterContext;
+export  {filterContext, FilterContextProvider};

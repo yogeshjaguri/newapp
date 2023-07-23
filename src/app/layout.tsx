@@ -1,9 +1,9 @@
 import { AppProvider } from '@/contexts/productcontext'
-import { FilterContextProvider} from '@/contexts/filtercontext'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {CartProvider} from '@/contexts/cartContext'
+import { FilterContextProvider } from '@/contexts/filtercontext'
 
 const inter = Inter({ subsets: ['latin'] })
 
