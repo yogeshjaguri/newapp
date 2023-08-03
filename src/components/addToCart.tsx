@@ -6,7 +6,7 @@ const AddToCart = ({product}:any) => {
     const {addToCart} = useCart();
     const [amount, setAmount] = useState(1);
     const {id, stock} = product;
-    console.log(id)
+    
 
     const setIncrement = () => {
         amount < stock ? setAmount(amount + 1) :

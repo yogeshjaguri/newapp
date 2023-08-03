@@ -11,8 +11,8 @@ const Products = () => {
     const categories = new Set(products.map((a:any) =>a.category));
   
   return (
-    <div className=''>
-      <Filter/>
+    <div className='p-2'>
+      
       <Sort/>
     {loading ? <p className='text-red-600'>Loading...</p>: null}
 

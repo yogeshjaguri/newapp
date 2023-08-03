@@ -4,8 +4,8 @@ import React from 'react'
 const Sort = () => {
   const {filteredProducts, sorting} = useFilter();
   return (
-    <div>
-      <form className='flex flex-col'>
+    <div >
+      <form className='flex '>
         <label className='text-lg font-bold'>Sort By</label>
         <select
         name='sort'

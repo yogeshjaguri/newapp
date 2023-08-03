@@ -1,53 +1,69 @@
 "use client";
 import useProduct from "@/hooks/useProduct";
 import { createContext, useEffect, useReducer } from "react";
-import reducer from '../reducers/filterReducer'
+import reducer from "../reducers/filterReducer";
 
 const filterContext = createContext();
 
 const initialState = {
-    all_products: [],
-    filteredProducts: [],
-    sort: "lowest",
-    filters: {
-        text: "",        
-    },
+  all_products: [],
+  filteredProducts: [],
+  sort: "lowest",
+  filters: {
+    text: "",
+    category: "All",
+    brand: "All",
+    maxprice: 0,
+    price: 0,
+    minprice: 0,
+  },
 };
 
- const FilterContextProvider = ({ children }: any) => {
-    const { products } = useProduct();
-    const [state, dispatch] = useReducer(reducer, initialState);
+const FilterContextProvider = ({ children }: any) => {
+  const { products } = useProduct();
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-    //sorting function 
-    const sorting = (e) => {
-        let userValue = e.target.value;
-        dispatch({ type: "SORT_VALUE", payload: userValue });
-    };
+  //sorting function
+  const sorting = (e) => {
+    let userValue = e.target.value;
+    dispatch({ type: "SORT_VALUE", payload: userValue });
+  };
 
-    //filtering function
-    const updateFilterValue = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-        dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } });
-    };
+  //filtering function
+  const updateFilterValue = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } });
+  };
 
-    useEffect(() => {
-        dispatch({ type: "FILTERED_PORODUCTS", payload: products });
-        dispatch({ 
-        type: "SORT_PRODUCTS"});
-    }, [products, state.sort, state.filters]);
+  //clear filter function
 
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTERS" });
+  };
+
+  useEffect(() => {
+    dispatch({ type: "FILTERED_PORODUCTS" });
+    dispatch({
+      type: "SORT_PRODUCTS",
+    });
+  }, [products, state.sort, state.filters]);
 
   useEffect(() => {
     dispatch({ type: "GET_FILTERED_PORODUCTS", payload: products });
   }, [products]);
 
   return (
-    <filterContext.Provider value={{ ...state, sorting, updateFilterValue }}>
+    <filterContext.Provider
+      value={{ 
+        ...state, 
+        sorting, 
+        updateFilterValue, 
+        clearFilters }}
+    >
       {children}
     </filterContext.Provider>
   );
 };
 
-
-export  {filterContext, FilterContextProvider};
+export { filterContext, FilterContextProvider };

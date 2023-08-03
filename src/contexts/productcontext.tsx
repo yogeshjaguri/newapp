@@ -8,6 +8,37 @@ const AppContext = createContext({});
 const API = 'https://dummyjson.com/products';
 // const ProductAPI = `https://dummyjson.com/products/${id}`;
 
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios'; // Make sure you have Axios installed: npm install axios
+
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const fetchLimit = 30;
+
+  useEffect(() => {
+    // Function to fetch products from the API
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`https://dummyjson.com/products/?page=${currentPage}&limit=${fetchLimit}`);
+        if (response.status === 200) {
+          // Append new products to the existing list
+          setProducts((prevProducts) => [...prevProducts, ...response.data]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, [currentPage]);
+
+  const handleLoadMore = () => {
+    // Increase the current page by 1 to load the next page
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+
+
 const initialState = {
     loading: true,
     isError: false,
