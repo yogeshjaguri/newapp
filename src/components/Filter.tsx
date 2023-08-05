@@ -1,4 +1,5 @@
 import useFilter from "@/hooks/useFilter";
+import { type } from "os";
 import React from "react";
 
 
@@ -34,7 +35,7 @@ const Filter = () => {
       </form>
       <div className="flex-col px-2">
         <h3 className="bg-orange-300"> category </h3>
-        {categories.map((item, index) => (
+        {categories.map((item:any, index:number) => (
           <button
             key={index}
             type="button"
@@ -57,7 +58,7 @@ const Filter = () => {
             className="block "
             onClick={updateFilterValue}
           >
-            {brands.map((item, index) => (
+            {brands.map((item:any, index:number) => (
               <option key={index} name="brand" value={item}>
                 {item}
               </option>
