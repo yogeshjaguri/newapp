@@ -14,7 +14,7 @@ const Filter = () => {
     let newVal = data.map((item:any) => {
       return item[property];
     });
-    return (newVal = ["All", ...new Set(newVal)]);
+    return (newVal = ["All", ...new Set(newVal)as any]);
   };
 
   const categories = getUniqueData(all_products, "category");
