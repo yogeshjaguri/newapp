@@ -1,7 +1,7 @@
 'use client'
+import AddToCart from '@/components/AddToCart';
 import Images from '@/components/Images';
 import Star from '@/components/Star';
-import AddToCart from '@/components/AddToCart';
 import useProduct from '@/hooks/useProduct';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
