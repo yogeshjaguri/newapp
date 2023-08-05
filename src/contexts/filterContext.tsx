@@ -35,7 +35,7 @@ const initialState : FilterState = {
 };
 
 const FilterContextProvider = ({ children }: any) => {
-  const { products } = useProduct();
+  const { products }  = useProduct();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   //sorting function

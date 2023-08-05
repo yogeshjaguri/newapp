@@ -6,8 +6,8 @@ import Sort from '@/components/Sort';
 import Filter from '@/components/Filter';
 
 const Products = () => {
-  const {filteredProducts} = useFilter();
-    const {loading, products} =  useProduct();
+  const {filteredProducts}  = useFilter() as any;
+    const {loading, products} =  useProduct() as any;
     const categories = new Set(products.map((a:any) =>a.category));
   
   return (
