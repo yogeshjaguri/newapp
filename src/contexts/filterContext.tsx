@@ -4,7 +4,7 @@ import { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/filterReducer";
 
 const filterContext = createContext();
-
+ 
 const initialState = {
   all_products: [],
   filteredProducts: [],

@@ -1,4 +1,3 @@
-
 import { filterContext } from '@/contexts/filtercontext';
 import { useContext } from 'react';
 
