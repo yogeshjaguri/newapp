@@ -13,7 +13,7 @@ type Params = {
 }
 
 const page = ({params: {id}}: Params ) => {
-  const {productLoading, product, getProduct } =  useProduct();
+  const {productLoading, product, getProduct } =  useProduct() as any;
 
   useEffect(() => {
     getProduct(`https://dummyjson.com/products/${id}`)
