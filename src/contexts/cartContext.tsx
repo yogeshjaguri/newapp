@@ -3,8 +3,15 @@ import React, { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/cartReducer";
 
 const CartContext = createContext();
+
+type initialStateTypes = {
+  cart: any;         // 'cart' property can have any type
+  total: number;     // 'total' property must be a number
+  total_price: number; // 'total_price' property must be a number
+  shippingFee: number; // 'shippingFee' property must be a number
+};
  
-const initialState = {
+const initialState : initialStateTypes = {
   cart: localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [],
