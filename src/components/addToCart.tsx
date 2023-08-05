@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 const AddToCart = ({product}:any) => {
-    const {addToCart} = useCart();
+    const {addToCart}:any = useCart();
     const [amount, setAmount] = useState(1);
     const {id, stock} = product;
     
