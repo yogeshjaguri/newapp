@@ -4,7 +4,7 @@ import useCart from "@/hooks/useCart";
 import Link from "next/link";
 
 const Cart = () => {
-  const { cart, clearCart, total_price, shippingFee } = useCart();
+  const { cart, clearCart, total_price, shippingFee } = useCart() as any;
 
   
   return (
