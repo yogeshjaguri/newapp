@@ -2,8 +2,8 @@ import useCart from "@/hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import CartAmountToggle from "@/components/CartAmountToggle";
 
-const CartItem = ({ id,  amount, product }) => {
-    const { removeItem, cartToggle } = useCart();
+const CartItem = ({ id,  amount, product } :any) => {
+    const { removeItem, cartToggle } = useCart()as any;
     const { title, price, thumbnail,stock } = product;
     console.log(stock)
     return (
