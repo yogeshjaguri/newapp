@@ -1,6 +1,6 @@
 'use client'
 
-import AddToCart from '@/components/AddToCart';
+import AddToCart from '@/components/addToCart';
 import Images from '@/components/Images';
 import Star from '@/components/Star';
 import useProduct from '@/hooks/useProduct';
