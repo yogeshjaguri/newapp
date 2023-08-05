@@ -24,11 +24,11 @@ type AddToCartFunction = (id: string, amount: number, product: Product,  stock: 
 type ToggleAmountFunction = (id: string, value: 'inc' | 'dec', stock: number) => void;
 
 
- 
+
 const initialState: initialStateTypes = {
-  cart: localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart") as any)
-    : null, // Use 'null' instead of an empty array for the initial cart value
+  cart: typeof window !== 'undefined' && localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart") as any)
+  : null, // Use 'null' instead of an empty array for the initial cart value
   total: 0,
   total_price: 0,
   shippingFee: 5000,
