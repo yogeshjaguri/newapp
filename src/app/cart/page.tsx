@@ -16,7 +16,7 @@ const Cart = () => {
       </Link>
       </div>
       
-      {cart.length === 0 ? <h1 className="bg-red-200 w-full h-60 flex justify-center items-center">Cart is empty</h1>  : (<>
+      {cart === null || cart.length === 0 ? <h1 className="bg-red-200 w-full h-60 flex justify-center items-center">Cart is empty</h1>  : (<>
         <div className='border grid
         grid-cols-5 grid-flow-row gap-1 p-1'>
               {/* <Product {...product} /> */}
