@@ -3,7 +3,6 @@ import Product from '../product/page'
 import useProduct from '@/hooks/useProduct';
 import useFilter from '@/hooks/useFilter';
 import Sort from '@/components/Sort';
-import Filter from '@/components/Filter';
 
 const Products = () => {
   const {filteredProducts}  = useFilter() as any;
