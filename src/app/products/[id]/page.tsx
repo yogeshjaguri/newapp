@@ -1,4 +1,5 @@
 'use client'
+
 import AddToCart from '@/components/AddToCart';
 import Images from '@/components/Images';
 import Star from '@/components/Star';
