@@ -1,6 +1,7 @@
 import useFilter from "@/hooks/useFilter";
 import React from "react";
 
+
 const Filter = () => {
   const {
     all_products,
@@ -9,8 +10,8 @@ const Filter = () => {
     filters: { text, price, maxPrice, minPrice },
   }: any = useFilter();
 
-  const getUniqueData = (data, property) => {
-    let newVal = data.map((item) => {
+  const getUniqueData = (data:any, property:any): any => {
+    let newVal = data.map((item:any) => {
       return item[property];
     });
     return (newVal = ["All", ...new Set(newVal)]);
