@@ -1,11 +1,12 @@
+import { Url } from 'next/dist/shared/lib/router/router';
 import React from 'react'
 
-const Images = ({images}) => {
+const Images = ({images}:any) => {
     const [mainImage, setMainImage] = React.useState(images[0]);
   return (<>
   <div className='flex'>
     <figure className='grid grid-rows-5'>
-        {images.map((image, index) => (
+        {images.map((image : any, index: number) => (
             <img 
             key={index} 
             className='h-10 w-10 border rounded-md cursor-pointer hover:border-orange-400 p-1 hover:p-0 transition-all' 

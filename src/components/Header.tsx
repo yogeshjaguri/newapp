@@ -5,7 +5,7 @@ import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const page = () => {
-  const {total } = useCart();
+  const {total} = useCart() as any;
  
 
   return (

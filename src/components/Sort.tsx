@@ -2,7 +2,7 @@ import useFilter from '@/hooks/useFilter';
 import React from 'react'
 
 const Sort = () => {
-  const {filteredProducts, sorting} = useFilter();
+  const {filteredProducts, sorting} : any = useFilter();
   return (
     <div >
       <form className='flex '>

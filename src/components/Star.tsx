@@ -2,7 +2,7 @@ import React from 'react'
 import {FaStar, FaStarHalf} from 'react-icons/fa'
 import { AiOutlineStar} from "react-icons/ai";
 
-const Star = ({rating}) => {
+const Star = ({rating}:any) => {
    const starRating = Array.from({length: 5}, (e, i) => {
         const ratingValue = i + 0.5;
 
