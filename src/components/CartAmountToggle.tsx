@@ -1,6 +1,6 @@
 import { FaMinus, FaPlus } from "react-icons/fa"
 
-const CartAmountToggle = ({amount, setIncrement,setDecrement}) => {
+const CartAmountToggle = ({amount, setIncrement,setDecrement}: any)  => {
     return (
         
           
