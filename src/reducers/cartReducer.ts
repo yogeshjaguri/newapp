@@ -9,7 +9,7 @@ type Product = {
 type CartItem = {
     id: string;
     amount: number;
-    // stock: number;
+    stock: number;
     product: Product;
     // Add other properties specific to your cart item if needed
   };

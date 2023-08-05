@@ -19,7 +19,7 @@ type Product = {
   // Add other properties specific to your product if needed
 };
 
-type AddToCartFunction = (id: string, amount: number, product: Product) => void;
+type AddToCartFunction = (id: string, amount: number, product: Product,  stock: number) => void;
 
 type ToggleAmountFunction = (id: string, value: 'inc' | 'dec', stock: number) => void;
 
@@ -37,8 +37,8 @@ const initialState: initialStateTypes = {
 const CartProvider = ({ children }:any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addToCart : AddToCartFunction = (id, amount, product) => {
-    dispatch({ type: "ADD_TO_CART", payload: { id, amount, product } });
+  const addToCart : AddToCartFunction = (id, amount, product, stock) => {
+    dispatch({ type: "ADD_TO_CART", payload: { id, amount, product, stock } });
   };
 
   //increment amount and decrement amount
