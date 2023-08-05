@@ -47,7 +47,7 @@ type State = {
     productError: boolean,
 };
 
-const initialState = {
+const initialState : State = {
     loading: true,
     isError: false,
     products: [],
