@@ -59,7 +59,7 @@ const Filter = () => {
             onClick={updateFilterValue}
           >
             {brands.map((item:any, index:number) => (
-              <option key={index} name="brand" value={item}>
+              <option key={index} value={item}>
                 {item}
               </option>
             ))}
