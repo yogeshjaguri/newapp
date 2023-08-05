@@ -21,6 +21,9 @@ type Product = {
 
 type AddToCartFunction = (id: string, amount: number, product: Product) => void;
 
+type ToggleAmountFunction = (id: string, value: 'inc' | 'dec', stock: number) => void;
+
+
  
 const initialState: initialStateTypes = {
   cart: localStorage.getItem("cart")
@@ -39,9 +42,9 @@ const CartProvider = ({ children }:any) => {
   };
 
   //increment amount and decrement amount
-  const cartToggle : AddToCartFunction = (id, value, stock) => {
-      dispatch({ type: "TOGGLE_AMOUNT", payload: { id, value, stock } });
-    };
+  const cartToggle: ToggleAmountFunction = (id, value, stock) => {
+    dispatch({ type: "TOGGLE_AMOUNT", payload: { id, value, stock } });
+  };
 
 
   const removeItem : AddToCartFunction = (id) => {
