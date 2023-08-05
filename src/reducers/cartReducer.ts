@@ -1,133 +1,108 @@
-const cartReducer = (state, action) => {
-    switch (action.type) {
-        case 'ADD_TO_CART':
-        // check if item is in cart already
-        const inCart = state.cart.find((item) =>
-            item.id === action.payload.id ? true : false
-        );
+type Product = {
+    id: string;
+    name: string;
+    price: number;
+    // Add other properties specific to the product if needed
+  };
 
-        if (inCart) {
-            let newCart = state.cart.map((item) => {
-            if (item.id === action.payload.id) {
-                let newAmount = item.amount + action.payload.amount;
+  
+type CartItem = {
+    id: string;
+    amount: number;
+    stock: number;
+    product: Product;
+    // Add other properties specific to your cart item if needed
+  };
 
-                if (newAmount >= item.stock) {
-                newAmount = item.stock;
-                }
-                
-                return {
-                ...item,
-                amount: newAmount,
-                };
+  
+  type State = {
+    cart: CartItem[];
+    total: number;
+    total_price: number;
+    // Add other properties specific to your state if needed
+  };
+  
+  type Action =
+    | { type: 'ADD_TO_CART'; payload: CartItem }
+    | { type: 'TOGGLE_AMOUNT'; payload: { id: string; value: 'inc' | 'dec'; stock: number } }
+    | { type: 'REMOVE_ITEM'; payload: string }
+    | { type: 'CLEAR_CART' }
+    | { type: 'CART_TOTALS' };
+    const cartReducer = (state: State, action: Action): State => {
+        switch (action.type) {
+          case 'ADD_TO_CART':
+            const inCart = state.cart.find((item) => item.id === action.payload.id);
+            
+            if (inCart) {
+              const newCart = state.cart.map((item) =>
+                item.id === action.payload.id
+                  ? {
+                      ...item,
+                      amount: Math.min(action.payload.stock, item.amount + action.payload.amount),
+                    }
+                  : item
+              );
+              
+              return {
+                ...state,
+                cart: newCart,
+              };
             } else {
-                return item;
+              return {
+                ...state,
+                cart: [...state.cart, action.payload],
+              };
             }
-        });
-        return {
-            ...state,
-            cart: newCart,
-        };
-        } else {
-        return {
-            ...state,
-            cart: [...state.cart, action.payload],
-        };
-        }
-
-
-        case 'TOGGLE_AMOUNT':
-        return {
-            ...state,
-            cart: state.cart.map((item) => {
-                console.log(item.stock)
-                if (item.id === action.payload.id) {
-                    if (action.payload.value === 'inc') {
-                        let newAmount = item.amount + 1;
-                        
-                if (newAmount >= item.stock) {
-                    newAmount = item.stock;
-                }
-
-                return {
+      
+          case 'TOGGLE_AMOUNT':
+            const newCart = state.cart.map((item) =>
+              item.id === action.payload.id
+                ? {
                     ...item,
-                    amount: newAmount,
-                };
-                }
-                if (action.payload.value === 'dec') {
-                let newAmount = item.amount - 1;
-                    
-                if (newAmount <= 1) {
-                    newAmount = 1;
-                }
-
-                return {
-                    ...item,
-                    amount: newAmount,
-                };
-                }
-            }
-            return item;
-            }),
-        };
-
-
-
-        case 'REMOVE_ITEM':
-        return {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-        };
-
-        case 'CLEAR_CART':
-        return {
-            ...state,
-            cart: [],
-        };
-
-        
-        // case 'GET_TOTALS':
-        //     let updatedTotal = state.cart.reduce((acc, item) => {
-        //         let { amount } = item;
-                
-        //         return (acc += amount);
-        //     }, 0);
-                 
-        //     return {
-        //         ...state,
-        //         total: updatedTotal,
-        //     };
-
-        // case 'CART_TOTAL_PRICE':
-        //     let updatedTotalPrice = state.cart.reduce((acc, item) => {
-        //         let { amount, product } = item;
-
-        //         return (acc += amount * product.price);
-        //     }, 0);
-
-        //     return {
-        //         ...state,
-        //         total_price: updatedTotalPrice,
-        //     };
-
-        case 'CART_TOTALS':
-            let { total, total_price } = state.cart.reduce(
-                (acc, curr) => {
-                    const { amount, product } = curr;
-                    const { price } = product;
-                    acc.total += amount;
-                    acc.total_price += price * amount;
-                    return acc;
-                },
-                {
-                    total: 0,
-                    total_price: 0,
-                }
+                    amount:
+                      action.payload.value === 'inc'
+                        ? Math.min(action.payload.stock, item.amount + 1)
+                        : Math.max(1, item.amount - 1),
+                  }
+                : item
+            );
+            
+            return {
+              ...state,
+              cart: newCart,
+            };
+      
+          case 'REMOVE_ITEM':
+            return {
+              ...state,
+              cart: state.cart.filter((item) => item.id !== action.payload),
+            };
+      
+          case 'CLEAR_CART':
+            return {
+              ...state,
+              cart: [],
+            };
+      
+          case 'CART_TOTALS':
+            const { total, total_price } = state.cart.reduce(
+              (acc, curr) => {
+                const { amount, product } = curr;
+                const { price } = product;
+                acc.total += amount;
+                acc.total_price += price * amount;
+                return acc;
+              },
+              {
+                total: 0,
+                total_price: 0,
+              }
             );
             return { ...state, total, total_price };
-
-        default:
+      
+          default:
             return state;
-    }
-};
-            
-export default cartReducer;
+        }
+      };
+      
+      export default cartReducer;

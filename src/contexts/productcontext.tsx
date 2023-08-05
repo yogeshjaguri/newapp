@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useEffect,useReducer,createContext, } from 'react';
 import  reducer  from '../reducers/productReducer'; 
+import { Url } from 'next/dist/shared/lib/router/router';
 
 const AppContext = createContext({});
 
@@ -61,7 +62,7 @@ const AppProvider = ({ children }:any) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const getProducts = async (url) => {
+    const getProducts = async (url: string) => {
         dispatch({ type: 'SET_LOADING' });
         try {
             const response = await axios(url);
@@ -75,7 +76,7 @@ const AppProvider = ({ children }:any) => {
       getProducts(API)
     }, [])
 
-    const getProduct = async(url) => {
+    const getProduct = async (url: string) => {
         dispatch({ type: 'SET_PRODUCT_LOADING' });
         try {
             const response = await axios(url);

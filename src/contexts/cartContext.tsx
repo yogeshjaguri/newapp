@@ -2,38 +2,49 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/cartReducer";
 
-const CartContext = createContext();
+const CartContext = createContext<any>(null); 
 
 type initialStateTypes = {
-  cart: any;         // 'cart' property can have any type
-  total: number;     // 'total' property must be a number
+  cart: any | null;    // 'cart' property can have any type or null
+  total: number;       // 'total' property must be a number
   total_price: number; // 'total_price' property must be a number
   shippingFee: number; // 'shippingFee' property must be a number
 };
+
+type Product = {
+  // Define the type for the 'product' argument
+  id: string;
+  name: string;
+  price: number;
+  // Add other properties specific to your product if needed
+};
+
+type AddToCartFunction = (id: string, amount: number, product: Product) => void;
+
  
-const initialState : initialStateTypes = {
+const initialState: initialStateTypes = {
   cart: localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [],
+    ? JSON.parse(localStorage.getItem("cart") as any)
+    : null, // Use 'null' instead of an empty array for the initial cart value
   total: 0,
   total_price: 0,
   shippingFee: 5000,
 };
-
-const CartProvider = ({ children }) => {
+ 
+const CartProvider = ({ children }:any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addToCart = (id, amount, product) => {
+  const addToCart : AddToCartFunction = (id, amount, product) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, amount, product } });
   };
 
   //increment amount and decrement amount
-  const cartToggle = (id, value, stock) => {
+  const cartToggle : AddToCartFunction = (id, value, stock) => {
       dispatch({ type: "TOGGLE_AMOUNT", payload: { id, value, stock } });
     };
 
 
-  const removeItem = (id) => {
+  const removeItem : AddToCartFunction = (id) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
 

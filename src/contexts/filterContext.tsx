@@ -2,9 +2,8 @@
 import useProduct from "@/hooks/useProduct";
 import { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/filterReducer";
-import { type } from "os";
 
-const filterContext = createContext();
+const filterContext = createContext<any>(null);
 
 type FilterState = {
   all_products: any[];
@@ -14,9 +13,9 @@ type FilterState = {
     text: string;
     category: string;
     brand: string;
-    maxprice: number;
+    maxPrice: number;
     price: number;
-    minprice: number;
+    minPrice: number;
   };
 };
  
@@ -28,24 +27,24 @@ const initialState : FilterState = {
     text: "",
     category: "All",
     brand: "All",
-    maxprice: 0,
+    maxPrice: 0,
     price: 0,
-    minprice: 0,
+    minPrice: 0,
   },
 };
 
 const FilterContextProvider = ({ children }: any) => {
-  const { products }  = useProduct();
+  const { products }  = useProduct() as any;
   const [state, dispatch] = useReducer(reducer, initialState);
 
   //sorting function
-  const sorting = (e) => {
+  const sorting = (e:any)  => {
     let userValue = e.target.value;
     dispatch({ type: "SORT_VALUE", payload: userValue });
   };
 
   //filtering function
-  const updateFilterValue = (e) => {
+  const updateFilterValue = (e:any) => {
     let name = e.target.name;
     let value = e.target.value;
     dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } });

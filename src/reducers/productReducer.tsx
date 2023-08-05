@@ -1,5 +1,30 @@
 // Date: 09/04/2021
-const productReducer = (state, action) => {
+
+type Product = {
+    id: string;
+    name: string;
+    price: number;
+    // Add other properties specific to the product if needed
+  };
+  
+  type State = {
+    loading: boolean;
+    isError: boolean;
+    products: Product[];
+    product: Product;
+    productLoading: boolean;
+    productError: boolean;
+  };
+  
+  type Action =
+    | { type: 'SET_LOADING' }
+    | { type: 'SET_PRODUCT_LOADING' }
+    | { type: 'GET_PRODUCTS'; payload: Product[] }
+    | { type: 'GET_PRODUCT'; payload: Product }
+    | { type: 'API_ERROR' }
+    | { type: 'PRODUCT_API_ERROR' };
+  
+const productReducer =  (state: State, action: Action): State => {
     switch (action.type) {
         case 'SET_LOADING':
             return { ...state, loading: true }

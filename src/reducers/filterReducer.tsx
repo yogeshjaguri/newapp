@@ -1,4 +1,39 @@
-const filterReducer = (state, action) => {
+    type Product = {
+        id: string;
+        title: string;
+        price: number;
+        category: string;
+        brand: string;
+        // Add other properties specific to the product if needed
+      };
+      
+      type Filters = {
+        text: string;
+        category: string;
+        brand: string;
+        maxPrice: number;
+        price: number;
+        minPrice: number;
+        // Add other properties specific to the filters if needed
+      };
+      
+      type State = {
+        all_products: Product[];
+        filteredProducts: Product[];
+        filters: Filters;
+        sort: string;
+        // Add other properties specific to your state if needed
+      };
+      
+      type Action =
+        | { type: 'GET_FILTERED_PORODUCTS'; payload: Product[] }
+        | { type: 'SORT_VALUE'; payload: string }
+        | { type: 'SORT_PRODUCTS' }
+        | { type: 'UPDATE_FILTER_VALUE'; payload: { name: keyof Filters; value: any } }
+        | { type: 'FILTERED_PORODUCTS' }
+        | { type: 'CLEAR_FILTERS' };
+      
+      const filterReducer = (state: State, action: Action): State => {
     switch (action.type) {
         case 'GET_FILTERED_PORODUCTS':
             let priceArr = action.payload.map((curElem) => curElem.price);
@@ -99,7 +134,7 @@ const filterReducer = (state, action) => {
                     text: "",
                     category: "All",
                     brand: "All",
-                    maxprice: 0,
+                    maxPrice: 0,
                     price: state.filters.maxPrice,
                     minPrice: 0,
                     },
