@@ -37,7 +37,15 @@ const API = 'https://dummyjson.com/products';
   //   setCurrentPage((prevPage) => prevPage + 1);
   // };
 
-
+type State = {
+    loading: boolean,
+    isError: boolean,
+    products: any[],
+    product: any,
+    categories: any[],
+    productLoading: boolean,
+    productError: boolean,
+};
 
 const initialState = {
     loading: true,
