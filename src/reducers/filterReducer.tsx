@@ -59,7 +59,7 @@
                 const { filteredProducts, sort } = state;
                 let sortedProducts = [...filteredProducts];
 
-                const sortProducts = (a, b) => {
+                const sortProducts = (a:any, b:any) => {
                     if (sort === 'lowest') {
                         return a.price - b.price;
                     } else if (sort === 'highest') {
