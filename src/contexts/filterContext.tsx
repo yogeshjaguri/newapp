@@ -20,7 +20,7 @@ type FilterState = {
   };
 };
  
-const initialState : FilterState {
+const initialState : FilterState = {
   all_products: [],
   filteredProducts: [],
   sort: "lowest",
