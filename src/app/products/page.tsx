@@ -1,8 +1,8 @@
-import React from 'react'
-import Product from '../product/page'
-import useProduct from '@/hooks/useProduct';
-import useFilter from '@/hooks/useFilter';
-import Sort from '@/components/Sort';
+import Sort from "@/components/Sort";
+import useFilter from "@/hooks/useFilter";
+import useProduct from "@/hooks/useProduct";
+import Product from "../product/page";
+
 
 const Products = () => {
   const {filteredProducts}  = useFilter() as any;
