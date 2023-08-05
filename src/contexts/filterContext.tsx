@@ -2,10 +2,25 @@
 import useProduct from "@/hooks/useProduct";
 import { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/filterReducer";
+import { type } from "os";
 
 const filterContext = createContext();
+
+type FilterState = {
+  all_products: any[];
+  filteredProducts: any[];
+  sort: string;
+  filters: {
+    text: string;
+    category: string;
+    brand: string;
+    maxprice: number;
+    price: number;
+    minprice: number;
+  };
+};
  
-const initialState = {
+const initialState : FilterState {
   all_products: [],
   filteredProducts: [],
   sort: "lowest",
